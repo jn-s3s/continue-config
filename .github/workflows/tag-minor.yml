@@ -1,0 +1,37 @@
+name: Create Minor Release Tag
+on:
+  workflow_dispatch:
+jobs:
+  tag-minor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Clone repo, pull all commits, branches, and tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate next minor version
+        id: bump
+        run: |
+          latest_tag=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+          [ -z "$latest_tag" ] && latest_tag="v0.0.0"
+          echo "Latest tag: $latest_tag"
+          major=$(echo "$latest_tag" | cut -d. -f1 | sed 's/v//')
+          minor=$(echo "$latest_tag" | cut -d. -f2)
+          new_minor=$((minor + 1))
+          new_tag="v${major}.${new_minor}.0"
+          echo "new_tag=$new_tag" >> "$GITHUB_OUTPUT"
+      - name: Commit and tag changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: ${{ steps.bump.outputs.new_tag }}
+          create_git_tag_only: true
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
