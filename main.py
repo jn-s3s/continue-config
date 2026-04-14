@@ -3,9 +3,9 @@ import json
 import os
 from pathlib import Path
 
+from groq import Groq
 import requests
 from sambanova import SambaNova
-from groq import Groq
 
 if os.environ.get("GITHUB_ACTOR") is None:
     import dotenv
