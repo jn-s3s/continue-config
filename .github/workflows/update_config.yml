@@ -1,0 +1,57 @@
+name: Fetch and update models
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+jobs:
+  update-models:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - name: Clone repo, pull all commits, branches, and tags
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate next minor version
+        id: bump
+        run: |
+          latest_tag=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+          [ -z "$latest_tag" ] && latest_tag="v1.0.0"
+          echo "Latest tag: $latest_tag"
+          major=$(echo "$latest_tag" | cut -d. -f1 | sed 's/v//')
+          minor=$(echo "$latest_tag" | cut -d. -f2)
+          new_minor=$((minor + 1))
+          new_tag="v${major}.${new_minor}.0"
+          echo "new_tag=$new_tag" >> "$GITHUB_OUTPUT"
+      - name: Setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests sambanova groq
+      - name: Run python script
+        env:
+          TAGS: ${{ steps.bump.outputs.new_tag }}
+          SAMBANOVA_MODEL_ENDPOINT: ${{ secrets.SAMBANOVA_MODEL_ENDPOINT }}
+          SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+          OPENROUTER_MODEL_ENDPOINT: ${{ secrets.OPENROUTER_MODEL_ENDPOINT }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_MODEL_ENDPOINT: ${{ secrets.GROQ_MODEL_ENDPOINT }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python main.py
+      - name: Commit and tag changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: ${{ steps.bump.outputs.new_tag }}
+          commit_message: 'chore: update model lists'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          body: '**Full Changelog**: https://github.com/${{ github.repository }}/commits/${{ steps.bump.outputs.new_tag }}'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
