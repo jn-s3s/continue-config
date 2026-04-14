@@ -1,0 +1,50 @@
+[
+    {
+        "id": "DeepSeek-R1-0528",
+        "provider": "sambanova",
+        "context_length": "131k",
+        "max_completion_tokens": "7k"
+    },
+    {
+        "id": "DeepSeek-V3-0324",
+        "provider": "sambanova",
+        "context_length": "131k",
+        "max_completion_tokens": "7k"
+    },
+    {
+        "id": "DeepSeek-V3.1",
+        "provider": "sambanova",
+        "context_length": "131k",
+        "max_completion_tokens": "7k"
+    },
+    {
+        "id": "DeepSeek-V3.1-cb",
+        "provider": "sambanova",
+        "context_length": "32k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "DeepSeek-V3.2",
+        "provider": "sambanova",
+        "context_length": "32k",
+        "max_completion_tokens": "7k"
+    },
+    {
+        "id": "MiniMax-M2.5",
+        "provider": "sambanova",
+        "context_length": "163k",
+        "max_completion_tokens": "163k"
+    },
+    {
+        "id": "gemma-3-12b-it",
+        "provider": "sambanova",
+        "context_length": "131k",
+        "max_completion_tokens": "131k"
+    },
+    {
+        "id": "gpt-oss-120b",
+        "provider": "sambanova",
+        "context_length": "131k",
+        "max_completion_tokens": "131k"
+    }
+]
