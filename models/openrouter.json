@@ -54,6 +54,12 @@
         "max_completion_tokens": "262k"
     },
     {
+        "id": "meta-llama/llama-guard-4-12b:free",
+        "provider": "openrouter",
+        "context_length": "163k",
+        "max_completion_tokens": "65k"
+    },
+    {
         "id": "google/gemma-3-4b-it:free",
         "provider": "openrouter",
         "context_length": "32k",

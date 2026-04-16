@@ -1,11 +1,5 @@
 [
     {
-        "id": "DeepSeek-V3-0324",
-        "provider": "sambanova",
-        "context_length": "131k",
-        "max_completion_tokens": "7k"
-    },
-    {
         "id": "DeepSeek-V3.1",
         "provider": "sambanova",
         "context_length": "131k",

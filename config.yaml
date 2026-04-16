@@ -1,64 +1,64 @@
 name: Continue Elite Configs
-version: 1.1.0
+version: 2.1.0
 schema: v1
 models:
-- name: 1.1 Fast | Llama-4-Scout | Groq | 131k/8k
-  provider: groq
-  model: meta-llama/llama-4-scout-17b-16e-instruct
-  apiKey: ${{ secrets.GROQ_API_KEY }}
-- name: 1.2 Fast | Compound-Mini | Groq | 131k/8k
-  provider: groq
-  model: groq/compound-mini
-  apiKey: ${{ secrets.GROQ_API_KEY }}
-- name: 1.3 Fast | Llama-3.1-8B | Groq | 131k/131k
-  provider: groq
-  model: llama-3.1-8b-instant
-  apiKey: ${{ secrets.GROQ_API_KEY }}
-- name: 1.4 Fast | DeepSeek-V3-0324 | SambaNova | 131k/7k
-  provider: sambanova
-  model: DeepSeek-V3-0324
-  apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-- name: 1.5 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
-  provider: sambanova
-  model: DeepSeek-V3.1
-  apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-- name: 2.1 Refactor | Kimi-K2 | Groq | 262k/16k
-  provider: groq
-  model: moonshotai/kimi-k2-instruct-0905
-  apiKey: ${{ secrets.GROQ_API_KEY }}
-- name: 2.2 Refactor | Gemma-3-12B | SambaNova | 131k/131k
-  provider: sambanova
-  model: gemma-3-12b-it
-  apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-- name: 2.3 Refactor | Qwen3-32B | Groq | 131k/40k
-  provider: groq
-  model: qwen/qwen3-32b
-  apiKey: ${{ secrets.GROQ_API_KEY }}
-- name: 2.4 Refactor | GPT-OSS-120B | SambaNova | 131k/131k
-  provider: sambanova
-  model: gpt-oss-120b
-  apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-- name: 2.5 Refactor | Gemma-3-27B | OpenRouter | 131k/8k
-  provider: openrouter
-  model: google/gemma-3-27b-it:free
-  apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-- name: 3.1 Deep | Nemotron-Super-120B | OpenRouter | 262k/262k
-  provider: openrouter
-  model: nvidia/nemotron-3-super-120b-a4b:free
-  apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-- name: 3.2 Deep | Qwen3-Coder | OpenRouter | 262k/262k
-  provider: openrouter
-  model: qwen/qwen3-coder:free
-  apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-- name: 3.3 Deep | Gemma-4-31B | OpenRouter | 262k/32k
-  provider: openrouter
-  model: google/gemma-4-31b-it:free
-  apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-- name: 3.4 Deep | MiniMax-M2.5 | SambaNova | 163k/163k
-  provider: sambanova
-  model: MiniMax-M2.5
-  apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-- name: 3.5 Deep | GLM-4.5-Air | OpenRouter | 131k/96k
-  provider: openrouter
-  model: z-ai/glm-4.5-air:free
-  apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 1.1 Fast | Llama-4-Scout | Groq | 131k/8k
+    provider: groq
+    model: meta-llama/llama-4-scout-17b-16e-instruct
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.2 Fast | Compound-Mini | Groq | 131k/8k
+    provider: groq
+    model: groq/compound-mini
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.3 Fast | Llama-3.1-8B-Instant | Groq | 131k/131k
+    provider: groq
+    model: llama-3.1-8b-instant
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.4 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
+    provider: sambanova
+    model: DeepSeek-V3.2
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.5 Fast | Gemma-3-12B-IT | SambaNova | 131k/131k
+    provider: sambanova
+    model: gemma-3-12b-it
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.1 Refactor Specialist | Kimi-K2 | Groq | 131k/16k
+    provider: groq
+    model: moonshotai/kimi-k2-instruct
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Refactor Specialist | Kimi-K2-262k | Groq | 262k/16k
+    provider: groq
+    model: moonshotai/kimi-k2-instruct-0905
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.3 Refactor Specialist | Qwen3-32B | Groq | 131k/40k
+    provider: groq
+    model: qwen/qwen3-32b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.4 Refactor Specialist | DeepSeek-V3.1 | SambaNova | 131k/7k
+    provider: sambanova
+    model: DeepSeek-V3.1
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.5 Refactor Specialist | MiniMax-M2.5 | SambaNova | 163k/163k
+    provider: sambanova
+    model: MiniMax-M2.5
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 3.1 Thinking | Gemma-4-26B-A4B | OpenRouter | 262k/32k
+    provider: openrouter
+    model: google/gemma-4-26b-a4b-it:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.2 Thinking | Gemma-4-31B | OpenRouter | 262k/32k
+    provider: openrouter
+    model: google/gemma-4-31b-it:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.3 Thinking | Nemotron-3-Super-120B | OpenRouter | 262k/262k
+    provider: openrouter
+    model: nvidia/nemotron-3-super-120b-a12b:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.4 Thinking | Qwen3-Coder | OpenRouter | 262k/262k
+    provider: openrouter
+    model: qwen/qwen3-coder:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.5 Thinking | GPT-OSS-120B | SambaNova | 131k/131k
+    provider: sambanova
+    model: gpt-oss-120b
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
