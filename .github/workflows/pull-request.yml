@@ -1,0 +1,186 @@
+name: Release on PR merge (label‑driven)
+on:
+  pull_request:
+    types: [closed]
+jobs:
+  bump-major:
+    if: |
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.base.ref == 'main' &&
+        github.event.pull_request.head.ref == 'develop' &&
+        contains(github.event.pull_request.labels.*.name, 'Major')
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate next major version
+        id: bump
+        run: |
+          latest_tag=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+          [ -z "$latest_tag" ] && latest_tag="v0.0.0"
+          echo "Latest tag: $latest_tag"
+          major=${latest_tag#v}
+          major=${major%%.*}
+          new_major=$((major + 1))
+          new_tag="v${new_major}.0.0"
+          echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
+      - name: Setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests sambanova groq click
+      - name: Run python script
+        env:
+          TAGS: ${{ steps.bump.outputs.new_tag }}
+          SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MODEL_USER_PROMPT_URL: ${{ secrets.MODEL_USER_PROMPT_URL }}
+          MODEL_SYSTEM_PROMPT_URL: ${{ secrets.MODEL_SYSTEM_PROMPT_URL }}
+          API_TIMEOUT: ${{ vars.API_TIMEOUT }}
+          SAMBANOVA_MODEL_ENDPOINT: ${{ vars.SAMBANOVA_MODEL_ENDPOINT }}
+          OPENROUTER_MODEL_ENDPOINT: ${{ vars.OPENROUTER_MODEL_ENDPOINT }}
+          GROQ_MODEL_ENDPOINT: ${{ vars.GROQ_MODEL_ENDPOINT }}
+          SAMBANOVA_CHAT_MODEL: ${{ vars.SAMBANOVA_CHAT_MODEL }}
+          GROQ_CHAT_MODEL: ${{ vars.GROQ_CHAT_MODEL }}
+        run: python main.py --force
+      - name: Commit and tag changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: ${{ steps.bump.outputs.new_tag }}
+          commit_message: 'chore: update model lists'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  bump-minor:
+    if: |
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.base.ref == 'main' &&
+        github.event.pull_request.head.ref == 'develop' &&
+        contains(github.event.pull_request.labels.*.name, 'Minor')
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate next minor version
+        id: bump
+        run: |
+          latest_tag=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+          [ -z "$latest_tag" ] && latest_tag="v0.0.0"
+          echo "Latest tag: $latest_tag"
+          major=$(echo "$latest_tag" | cut -d. -f1 | sed 's/v//')
+          minor=$(echo "$latest_tag" | cut -d. -f2)
+          new_minor=$((minor + 1))
+          new_tag="v${major}.${new_minor}.0"
+          echo "new_tag=$new_tag" >> "$GITHUB_OUTPUT"
+      - name: Setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests sambanova groq click
+      - name: Run python script
+        env:
+          TAGS: ${{ steps.bump.outputs.new_tag }}
+          SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MODEL_USER_PROMPT_URL: ${{ secrets.MODEL_USER_PROMPT_URL }}
+          MODEL_SYSTEM_PROMPT_URL: ${{ secrets.MODEL_SYSTEM_PROMPT_URL }}
+          API_TIMEOUT: ${{ vars.API_TIMEOUT }}
+          SAMBANOVA_MODEL_ENDPOINT: ${{ vars.SAMBANOVA_MODEL_ENDPOINT }}
+          OPENROUTER_MODEL_ENDPOINT: ${{ vars.OPENROUTER_MODEL_ENDPOINT }}
+          GROQ_MODEL_ENDPOINT: ${{ vars.GROQ_MODEL_ENDPOINT }}
+          SAMBANOVA_CHAT_MODEL: ${{ vars.SAMBANOVA_CHAT_MODEL }}
+          GROQ_CHAT_MODEL: ${{ vars.GROQ_CHAT_MODEL }}
+        run: python main.py --force
+      - name: Commit and tag changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: ${{ steps.bump.outputs.new_tag }}
+          commit_message: 'chore: update model lists'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  bump-patch:
+    if: |
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.base.ref == 'main' &&
+        github.event.pull_request.head.ref == 'develop' &&
+        contains(github.event.pull_request.labels.*.name, 'Patch')
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Calculate next patch version
+        id: bump
+        run: |
+          latest_tag=$(git tag --sort=-v:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -n1)
+          [ -z "$latest_tag" ] && latest_tag="v0.0.0"
+          echo "Latest tag: $latest_tag"
+          major=$(echo "$latest_tag" | cut -d. -f1 | sed 's/v//')
+          minor=$(echo "$latest_tag" | cut -d. -f2)
+          patch=$(echo "$latest_tag" | cut -d. -f3)
+          new_patch=$((patch + 1))
+          new_tag="v${major}.${minor}.${new_patch}"
+          echo "new_tag=$new_tag" >> $GITHUB_OUTPUT
+      - name: Setup python environment
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: pip install requests sambanova groq click
+      - name: Run python script
+        env:
+          TAGS: ${{ steps.bump.outputs.new_tag }}
+          SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          MODEL_USER_PROMPT_URL: ${{ secrets.MODEL_USER_PROMPT_URL }}
+          MODEL_SYSTEM_PROMPT_URL: ${{ secrets.MODEL_SYSTEM_PROMPT_URL }}
+          API_TIMEOUT: ${{ vars.API_TIMEOUT }}
+          SAMBANOVA_MODEL_ENDPOINT: ${{ vars.SAMBANOVA_MODEL_ENDPOINT }}
+          OPENROUTER_MODEL_ENDPOINT: ${{ vars.OPENROUTER_MODEL_ENDPOINT }}
+          GROQ_MODEL_ENDPOINT: ${{ vars.GROQ_MODEL_ENDPOINT }}
+          SAMBANOVA_CHAT_MODEL: ${{ vars.SAMBANOVA_CHAT_MODEL }}
+          GROQ_CHAT_MODEL: ${{ vars.GROQ_CHAT_MODEL }}
+        run: python main.py --force
+      - name: Commit and tag changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          tagging_message: ${{ steps.bump.outputs.new_tag }}
+          commit_message: 'chore: update model lists'
+          commit_author: 'github-actions[bot] <github-actions[bot]@users.noreply.github.com>'
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.bump.outputs.new_tag }}
+          name: ${{ steps.bump.outputs.new_tag }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
