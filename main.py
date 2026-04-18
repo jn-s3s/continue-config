@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import time
 
+import click
 from groq import Groq
 import requests
 from requests.adapters import HTTPAdapter
@@ -251,11 +252,32 @@ def _dump_json(name: str, models: list) -> None:
 
 
 def _models_equal(old: list[dict], new: list[dict]) -> bool:
+    """
+    Compare two model lists for equality, ignoring order.
+
+    Args:
+        old: Previously stored model list.
+        new: Newly fetched model list.
+
+    Returns:
+        True if both lists contain the same id/provider pairs.
+    """
     key = lambda m: (m["id"], m["provider"])
     return sorted(old, key=key) == sorted(new, key=key)
 
 
 def _json_changed(provider: str, fresh_models: list[dict]) -> bool:
+    """
+    Determine whether the JSON file for a provider needs to be updated.
+
+    Args:
+        provider: Provider name (e.g., "sambanova").
+        fresh_models: Newly fetched model list for the provider.
+
+    Returns:
+        True if the file does not exist, cannot be read, or its content
+        differs from fresh_models.
+    """
     json_path = Path(f"{_MODELS_FOLDER}/{provider}.{_MODELS_EXT}")
     if not json_path.exists():
         return True
@@ -266,7 +288,18 @@ def _json_changed(provider: str, fresh_models: list[dict]) -> bool:
     return not _models_equal(existing, fresh_models)
 
 
-if __name__ == "__main__":
+@click.command()
+@click.option("--force-update", "--force", is_flag=True, default=False, help="Force update configuration.")
+def update(force_update: bool) -> None:
+    """
+    Main entry‑point for the CLI command.
+
+    Fetches models from all providers, writes JSON files when they change,
+    and (re)generates config.yaml when needed.
+
+    Args:
+        force_update (bool): When true forces regeneration of config.yaml.
+    """
     start = time.perf_counter()
     changed = False
     all_models = []
@@ -284,7 +317,7 @@ if __name__ == "__main__":
             changed = True
         all_models.extend(models)
 
-    if changed:
+    if changed or force_update:
         yaml = build_continue_yaml(all_models)
         _write_file(Path("config.yaml"), yaml)
     else:
@@ -294,3 +327,6 @@ if __name__ == "__main__":
     print("=" * 60)
     print(f"✨ Process completed in {elapsed:.2f}s")
     print("=" * 60)
+
+if __name__ == "__main__":
+    update()
