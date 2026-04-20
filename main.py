@@ -58,17 +58,14 @@ def get_sambanova_models() -> list[dict]:
     Returns:
         List of dictionaries containing model information with keys:
         id, provider, context_length, max_completion_tokens.
-
-    Raises:
-        requests.RequestException: If API request fails (handled internally)
     """
-    print("Getting SambaNova models...")
+    click.echo("Getting SambaNova models...")
     try:
         response = _HTTP_SESSION.get(_SAMBANOVA_MODEL_ENDPOINT, timeout=_API_TIMEOUT)
         response.raise_for_status()
         models_data = response.json()
     except requests.RequestException as error:
-        print(f"SambaNova API error: {error}")
+        click.echo(f"SambaNova API error: {error}", err=True)
         return []
 
     models = []
@@ -92,11 +89,8 @@ def get_openrouter_models() -> list[dict]:
     Returns:
         List of dictionaries containing model information with keys:
         id, provider, context_length, max_completion_tokens.
-
-    Raises:
-        requests.RequestException: If API request fails (handled internally)
     """
-    print("Getting OpenRouter models...")
+    click.echo("Getting OpenRouter models...")
     try:
         response = _HTTP_SESSION.get(
             _OPENROUTER_MODEL_ENDPOINT,
@@ -108,7 +102,7 @@ def get_openrouter_models() -> list[dict]:
         response.raise_for_status()
         models_data = response.json()
     except requests.RequestException as error:
-        print(f"OpenRouter API error: {error}")
+        click.echo(f"OpenRouter API error: {error}", err=True)
         return []
 
     models = []
@@ -136,11 +130,8 @@ def get_groq_models() -> list[dict]:
     Returns:
         List of dictionaries containing model information with keys:
         id, provider, context_length, max_completion_tokens.
-
-    Raises:
-        requests.RequestException: If API request fails (handled internally)
     """
-    print("Getting Groq models...")
+    click.echo("Getting Groq models...")
     try:
         response = _HTTP_SESSION.get(
             _GROQ_MODEL_ENDPOINT,
@@ -152,7 +143,7 @@ def get_groq_models() -> list[dict]:
         response.raise_for_status()
         models_data = response.json()
     except requests.RequestException as error:
-        print(f"Groq API error: {error}")
+        click.echo(f"Groq API error: {error}", err=True)
         return []
 
     models = []
@@ -188,27 +179,27 @@ def build_continue_yaml(models: list[dict]) -> str:
         response.raise_for_status()
         user_prompt = f"{response.text}\nModels:\n{models}\n"
     except requests.RequestException as error:
-        print(f"Model Prompt error: {error}")
+        click.echo(f"Model Prompt error: {error}", err=True)
         system_prompts = []
         user_prompt = ""
 
     messages = [{"role": "system", "content": prompt} for prompt in system_prompts] + [{"role": "user", "content": user_prompt}]
     try:
-        print("Sending prompt to Groq...")
+        click.echo("Sending prompt to Groq...")
         client = Groq(api_key=_GROQ_API_KEY)
         reply = client.chat.completions.create(model=_GROQ_CHAT_MODEL, messages=messages)
-        print("Response: Groq [OK]")
+        click.echo("Response: Groq [OK]")
         return reply.choices[0].message.content
     except Exception as error:
-        print(f"Groq API error: {error}")
+        click.echo(f"Groq API error: {error}", err=True)
         try:
-            print("Failed getting response from Groq. Sending prompt to SambaNova instead...")
+            click.echo("Failed getting response from Groq. Sending prompt to SambaNova instead...")
             client = SambaNova(base_url="https://api.sambanova.ai/v1", api_key=_SAMBANOVA_API_KEY)
             reply = client.chat.completions.create(model=_SAMBANOVA_CHAT_MODEL, messages=messages)
-            print("Response: SambaNova [OK]")
+            click.echo("Response: SambaNova [OK]")
             return reply.choices[0].message.content
         except Exception as error:
-            print(f"SambaNova API error: {error}")
+            click.echo(f"SambaNova API error: {error}", err=True)
             return ""
 
 
@@ -228,7 +219,7 @@ def _write_file(path: Path, text: str) -> None:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(text, encoding="utf-8")
         except OSError as error:
-            print(f"Error writing to {path!r}: {error}")
+            click.echo(f"Error writing to {path!r}: {error}", err=True)
             raise
 
 
@@ -239,16 +230,13 @@ def _dump_json(name: str, models: list) -> None:
     Args:
         name: Target file name.
         models: List of model dictionaries to serialize.
-
-    Raises:
-        OSError: Propagated from the underlying file write if it fails.
     """
     try:
         file_path = Path(f"{_MODELS_FOLDER}/{name}.{_MODELS_EXT}")
         file_path.parent.mkdir(parents=True, exist_ok=True)
         file_path.write_text(json.dumps(models, indent=4))
     except OSError as error:
-        print(f"Error writing to {name!r}.json: {error}")
+        click.echo(f"Error writing to {name!r}.json: {error}", err=True)
 
 
 def _models_equal(old: list[dict], new: list[dict]) -> bool:
@@ -321,12 +309,12 @@ def update(force_update: bool) -> None:
         yaml = build_continue_yaml(all_models)
         _write_file(Path("config.yaml"), yaml)
     else:
-        print("No provider changes detected - config.yaml left untouched.")
+        click.echo("No provider changes detected - config.yaml left untouched.")
 
     elapsed = time.perf_counter() - start
-    print("=" * 60)
-    print(f"✨ Process completed in {elapsed:.2f}s")
-    print("=" * 60)
+    click.echo("=" * 60)
+    click.echo(f"✨ Process completed in {elapsed:.2f}s")
+    click.echo("=" * 60)
 
 if __name__ == "__main__":
     update()
