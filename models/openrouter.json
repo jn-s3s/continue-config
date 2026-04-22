@@ -1,5 +1,11 @@
 [
     {
+        "id": "inclusionai/ling-2.6-flash:free",
+        "provider": "openrouter",
+        "context_length": "262k",
+        "max_completion_tokens": "32k"
+    },
+    {
         "id": "google/gemma-4-26b-a4b-it:free",
         "provider": "openrouter",
         "context_length": "262k",

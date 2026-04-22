@@ -1,66 +1,64 @@
 name: Continue Elite Configs
-version: 3.0.0
+version: 3.1.0
 schema: v1
 models:
-  - name: 1.1 Fast | DeepSeek-V3.1-cb | sambanova | 32k/32k
+  - name: 1.1 Fast | DeepSeek-V3.1-cb | SambaNova | 32k/32k
     provider: sambanova
     model: DeepSeek-V3.1-cb
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.2 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
+  - name: 1.2 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
     provider: sambanova
     model: DeepSeek-V3.2
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.3 Fast | gemma-3-4b-it | openrouter | 32k/8k
-    provider: openrouter
-    model: google/gemma-3-4b-it:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 1.4 Fast | gemma-3-12b-it | openrouter | 32k/8k
-    provider: openrouter
-    model: google/gemma-3-12b-it:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 1.5 Fast | compound-mini | groq | 131k/8k
-    provider: groq
-    model: groq/compound-mini
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-
-  - name: 2.1 Refactor Specialist | DeepSeek-V3.1 | sambanova | 131k/7k
+  - name: 1.3 Fast | gemma-3-12b-it | SambaNova | 131k/131k
     provider: sambanova
-    model: DeepSeek-V3.1
+    model: gemma-3-12b-it
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.2 Refactor Specialist | llama-4-scout-17b-16e-instruct | groq | 131k/8k
-    provider: groq
-    model: meta-llama/llama-4-scout-17b-16e-instruct
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.3 Refactor Specialist | llama-3.1-8b-instant | groq | 131k/131k
+  - name: 1.4 Fast | llama-3.1-8b-instant | Groq | 131k/131k
     provider: groq
     model: llama-3.1-8b-instant
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.4 Refactor Specialist | compound | groq | 131k/8k
+  - name: 1.5 Fast | meta-llama/llama-4-scout-17b-16e-instruct | Groq | 131k/8k
     provider: groq
-    model: groq/compound
+    model: meta-llama/llama-4-scout-17b-16e-instruct
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.5 Refactor Specialist | gpt-oss-120b | sambanova | 131k/131k
+  - name: 2.1 Review | llama-3.3-70b-versatile | Groq | 131k/32k
+    provider: groq
+    model: llama-3.3-70b-versatile
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Review | openai/gpt-oss-120b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-120b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.3 Review | gpt-oss-120b | SambaNova | 131k/131k
     provider: sambanova
     model: gpt-oss-120b
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-
-  - name: 3.1 Thinker | gemma-4-26b-a4b-it | openrouter | 262k/32k
+  - name: 2.4 Review | MiniMax-M2.5 | SambaNova | 163k/163k
+    provider: sambanova
+    model: MiniMax-M2.5
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.5 Review | openai/gpt-oss-20b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 3.1 Think | inclusionai/ling-2.6-flash:free | OpenRouter | 262k/32k
+    provider: openrouter
+    model: inclusionai/ling-2.6-flash:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.2 Think | google/gemma-4-26b-a4b-it:free | OpenRouter | 262k/32k
     provider: openrouter
     model: google/gemma-4-26b-a4b-it:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.2 Thinker | gemma-4-31b-it | openrouter | 262k/32k
+  - name: 3.3 Think | google/gemma-4-31b-it:free | OpenRouter | 262k/32k
     provider: openrouter
     model: google/gemma-4-31b-it:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.3 Thinker | nemotron-3-super-120b-a12b | openrouter | 262k/262k
+  - name: 3.4 Think | nvidia/nemotron-3-super-120b-a12b:free | OpenRouter | 262k/262k
     provider: openrouter
     model: nvidia/nemotron-3-super-120b-a12b:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.4 Thinker | qwen3-coder | openrouter | 262k/262k
+  - name: 3.5 Think | qwen/qwen3-coder:free | OpenRouter | 262k/262k
     provider: openrouter
     model: qwen/qwen3-coder:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.5 Thinker | qwen3-32b | groq | 131k/40k
-    provider: groq
-    model: qwen/qwen3-32b
-    apiKey: ${{ secrets.GROQ_API_KEY }}
