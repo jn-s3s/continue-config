@@ -6,6 +6,12 @@
         "max_completion_tokens": "32k"
     },
     {
+        "id": "baidu/qianfan-ocr-fast:free",
+        "provider": "openrouter",
+        "context_length": "65k",
+        "max_completion_tokens": "28k"
+    },
+    {
         "id": "google/gemma-4-26b-a4b-it:free",
         "provider": "openrouter",
         "context_length": "262k",
