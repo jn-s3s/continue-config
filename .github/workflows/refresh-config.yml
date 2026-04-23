@@ -29,21 +29,28 @@ jobs:
         with:
           python-version: '3.12'
       - name: Install dependencies
-        run: pip install requests sambanova groq click
+        run: pip install -r requirements.txt
       - name: Run python script
         env:
           TAGS: ${{ steps.bump.outputs.new_tag }}
           SAMBANOVA_API_KEY: ${{ secrets.SAMBANOVA_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           MODEL_USER_PROMPT_URL: ${{ secrets.MODEL_USER_PROMPT_URL }}
           MODEL_SYSTEM_PROMPT_URL: ${{ secrets.MODEL_SYSTEM_PROMPT_URL }}
           API_TIMEOUT: ${{ vars.API_TIMEOUT }}
-          SAMBANOVA_MODEL_ENDPOINT: ${{ vars.SAMBANOVA_MODEL_ENDPOINT }}
-          OPENROUTER_MODEL_ENDPOINT: ${{ vars.OPENROUTER_MODEL_ENDPOINT }}
-          GROQ_MODEL_ENDPOINT: ${{ vars.GROQ_MODEL_ENDPOINT }}
+          SAMBANOVA_API_BASE_URL: ${{ vars.SAMBANOVA_API_BASE_URL }}
+          SAMBANOVA_API_ENDPOINT: ${{ vars.SAMBANOVA_API_ENDPOINT }}
+          OPENROUTER_API_BASE_URL: ${{ vars.OPENROUTER_API_BASE_URL }}
+          OPENROUTER_API_ENDPOINT: ${{ vars.OPENROUTER_API_ENDPOINT }}
+          GROQ_API_BASE_URL: ${{ vars.GROQ_API_BASE_URL }}
+          GROQ_API_ENDPOINT: ${{ vars.GROQ_API_ENDPOINT }}
+          GEMINI_API_BASE_URL: ${{ vars.GEMINI_API_BASE_URL }}
+          GEMINI_API_ENDPOINT: ${{ vars.GEMINI_API_ENDPOINT }}
           SAMBANOVA_CHAT_MODEL: ${{ vars.SAMBANOVA_CHAT_MODEL }}
           GROQ_CHAT_MODEL: ${{ vars.GROQ_CHAT_MODEL }}
+          GEMINI_CHAT_MODEL: ${{ vars.GROQ_CHAT_MODEL }}
         run: python main.py --force
       - name: Commit and tag changes
         id: auto_commit

@@ -1,0 +1,6 @@
+requests
+sambanova
+groq
+click
+tqdm
+google-genai
