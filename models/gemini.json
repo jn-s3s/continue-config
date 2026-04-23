@@ -1,0 +1,218 @@
+[
+    {
+        "id": "gemini-2.5-flash",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-2.5-pro",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-2.0-flash",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemini-2.0-flash-001",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemini-2.0-flash-lite-001",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemini-2.0-flash-lite",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemini-2.5-flash-preview-tts",
+        "provider": "gemini",
+        "context_length": "8k",
+        "max_completion_tokens": "16k"
+    },
+    {
+        "id": "gemini-2.5-pro-preview-tts",
+        "provider": "gemini",
+        "context_length": "8k",
+        "max_completion_tokens": "16k"
+    },
+    {
+        "id": "gemma-3-1b-it",
+        "provider": "gemini",
+        "context_length": "32k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemma-3-4b-it",
+        "provider": "gemini",
+        "context_length": "32k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemma-3-12b-it",
+        "provider": "gemini",
+        "context_length": "32k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemma-3-27b-it",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "8k"
+    },
+    {
+        "id": "gemma-4-26b-a4b-it",
+        "provider": "gemini",
+        "context_length": "262k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "gemma-4-31b-it",
+        "provider": "gemini",
+        "context_length": "262k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "gemini-flash-latest",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-flash-lite-latest",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-pro-latest",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-2.5-flash-lite",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-2.5-flash-image",
+        "provider": "gemini",
+        "context_length": "32k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "gemini-3-pro-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3-flash-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3.1-pro-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3.1-pro-preview-customtools",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3.1-flash-lite-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3-pro-image-preview",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "nano-banana-pro-preview",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "32k"
+    },
+    {
+        "id": "gemini-3.1-flash-image-preview",
+        "provider": "gemini",
+        "context_length": "65k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "lyria-3-clip-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "lyria-3-pro-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-3.1-flash-tts-preview",
+        "provider": "gemini",
+        "context_length": "8k",
+        "max_completion_tokens": "16k"
+    },
+    {
+        "id": "gemini-robotics-er-1.5-preview",
+        "provider": "gemini",
+        "context_length": "1048k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-robotics-er-1.6-preview",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "gemini-2.5-computer-use-preview-10-2025",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "deep-research-max-preview-04-2026",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "deep-research-preview-04-2026",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "65k"
+    },
+    {
+        "id": "deep-research-pro-preview-12-2025",
+        "provider": "gemini",
+        "context_length": "131k",
+        "max_completion_tokens": "65k"
+    }
+]

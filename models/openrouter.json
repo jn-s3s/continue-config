@@ -1,5 +1,11 @@
 [
     {
+        "id": "tencent/hy3-preview:free",
+        "provider": "openrouter",
+        "context_length": "262k",
+        "max_completion_tokens": "262k"
+    },
+    {
         "id": "inclusionai/ling-2.6-flash:free",
         "provider": "openrouter",
         "context_length": "262k",
