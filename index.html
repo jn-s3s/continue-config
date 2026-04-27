@@ -221,8 +221,8 @@
                                                 <span>${model.id}</span>
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${model.context_length}</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${model.max_completion_tokens}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${formatTokens(model.context_length)}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${formatTokens(model.max_completion_tokens)}</td>
                                     </tr>
                                 `).join("")}
                             </tbody>
@@ -252,7 +252,7 @@
 
         /**
          * Sorts an array of model objects by the specified column.
-         * Handles string values ending with "k" by converting them to numeric values.
+         * Handles both numeric values and legacy "k" format strings.
          * @param {Array<Object>} models - The array of model objects to sort.
          * @param {string} column - The column/property name to sort by.
          * @param {string} direction - The sort direction, either "asc" or "desc".
@@ -260,22 +260,40 @@
          */
         function sortModels(models, column, direction) {
             return [...models].sort((a, b) => {
-                let contextLength = a[column];
-                let maxCompletionTokens = b[column];
+                let valA = a[column];
+                let valB = b[column];
 
-                if (typeof contextLength === "string" && contextLength.endsWith("k")) {
-                    contextLength = parseInt(contextLength) * 1000;
+                // Handle legacy "k" format strings (backward compatibility)
+                if (typeof valA === "string" && valA.endsWith("k")) {
+                    valA = parseInt(valA) * 1000;
                 }
-                if (typeof maxCompletionTokens === "string" && maxCompletionTokens.endsWith("k")) {
-                    maxCompletionTokens = parseInt(maxCompletionTokens) * 1000;
+                if (typeof valB === "string" && valB.endsWith("k")) {
+                    valB = parseInt(valB) * 1000;
                 }
 
+                // Compare the two values
                 if (direction === "asc") {
-                    return contextLength > maxCompletionTokens ? 1 : -1;
+                    return valA > valB ? 1 : valA < valB ? -1 : 0;
                 } else {
-                    return contextLength < maxCompletionTokens ? 1 : -1;
+                    return valA < valB ? 1 : valA > valB ? -1 : 0;
                 }
             });
+        }
+
+        /**
+         * Formats token values for display.
+         * Handles both numeric values and legacy "k" format strings.
+         * @param {number|string} value - The token value to format.
+         * @returns {string} The formatted string.
+         */
+        function formatTokens(value) {
+            if (typeof value === "number") {
+                return value.toLocaleString();
+            } else if (typeof value === "string" && value.endsWith("k")) {
+                const num = parseInt(value) * 1000;
+                return num.toLocaleString();
+            }
+            return value;
         }
 
         /**

@@ -81,8 +81,8 @@ def get_sambanova_models() -> list[dict | None]:
             models.append({
                 "id": model.get("id"),
                 "provider": "sambanova",
-                "context_length": f"{context_length // 1000}k",
-                "max_completion_tokens": f"{max_comp_tokens // 1000}k",
+                "context_length": context_length,
+                "max_completion_tokens": max_comp_tokens,
             })
     return models
 
@@ -120,8 +120,8 @@ def get_openrouter_models() -> list[dict | None]:
             models.append({
                 "id": model_id,
                 "provider": "openrouter",
-                "context_length": f"{context_length // 1000}k",
-                "max_completion_tokens": f"{max_comp_tokens // 1000}k",
+                "context_length": context_length,
+                "max_completion_tokens": max_comp_tokens,
             })
     return models
 
@@ -155,8 +155,8 @@ def get_groq_models() -> list[dict | None]:
             models.append({
                 "id": model.get("id"),
                 "provider": "groq",
-                "context_length": f"{context_length // 1000}k",
-                "max_completion_tokens": f"{max_comp_tokens // 1000}k",
+                "context_length": context_length,
+                "max_completion_tokens": max_comp_tokens,
             })
     return models
 
@@ -190,8 +190,8 @@ def get_gemini_models() -> list[dict | None]:
             models.append({
                 "id": model.get("name").replace("models/", ""),
                 "provider": "gemini",
-                "context_length": f"{context_length // 1000}k",
-                "max_completion_tokens": f"{max_comp_tokens // 1000}k",
+                "context_length": context_length,
+                "max_completion_tokens": max_comp_tokens,
             })
     return models
 
@@ -201,7 +201,7 @@ def build_continue_yaml(models: list[dict]) -> str:
     Generate a config.yaml file by sending model data to an LLM.
 
     The function retrieves system and user prompts from the URLs defined in the environment,
-    then queries the configured LLM providers in order until a non‑empty response is received.
+    then queries the configured LLM providers in order until a non-empty response is received.
 
     Args:
         models: List of model dictionaries gathered from all providers.
@@ -229,15 +229,28 @@ def _get_model_prompts(models: list[dict]) -> tuple[list, str]:
     """
     Fetch the system and user prompt templates from the URLs configured in the environment and inject the current model list.
 
+    Converts numeric context_length and max_completion_tokens to "k" format for the LLM prompt.
+
     Args:
         models: The aggregated list of model dictionaries.
 
     Returns:
         A tuple containing:
-        * system_prompts - a list of system‑prompt lines.
-        * user_prompts - a single string that combines the user‑prompt template with a formatted representation of models.
+        * system_prompts - a list of system-prompt lines.
+        * user_prompts - a single string that combines the user-prompt template with a formatted representation of models.
     """
     click.echo("Fetching system and user prompt ...")
+
+    # Create a copy with "k" format for the LLM prompt
+    models_for_prompt = []
+    for model in models:
+        models_for_prompt.append({
+            "id": model["id"],
+            "provider": model["provider"],
+            "context_length": f"{model['context_length'] // 1000}k",
+            "max_completion_tokens": f"{model['max_completion_tokens'] // 1000}k",
+        })
+
     try:
         response = _HTTP_SESSION.get(_MODEL_SYSTEM_PROMPT_URL, timeout=_API_TIMEOUT)
         response.raise_for_status()
@@ -245,7 +258,7 @@ def _get_model_prompts(models: list[dict]) -> tuple[list, str]:
         system_prompts.append(f"Version should be {_TAGS}.")
         response = _HTTP_SESSION.get(_MODEL_USER_PROMPT_URL, timeout=_API_TIMEOUT)
         response.raise_for_status()
-        user_prompts = f"{response.text}\nModels:\n{models}\n"
+        user_prompts = f"{response.text}\nModels:\n{models_for_prompt}\n"
     except requests.RequestException as error:
         click.echo(f"Generating prompt error: {error}", err=True)
         system_prompts = []
@@ -412,7 +425,7 @@ def _json_changed(provider: str, fresh_models: list[dict]) -> bool:
 @click.option("--force-update", "--force", is_flag=True, default=False, help="Force update configuration.")
 def update(force_update: bool) -> None:
     """
-    Main entry‑point for the CLI command.
+    Main entry-point for the CLI command.
 
     Fetches models from all providers, writes JSON files when they change,
     and (re)generates config.yaml when needed.
