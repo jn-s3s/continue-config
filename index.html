@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <title>Continue Config - Free Models</title>
+    <script src="//cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class"
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen p-6 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white">Free LLM lists</h1>
+            <button id="dark-mode-toggle" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">
+                <span id="dark-mode-icon">
+                    <svg class="w-5 h-5 hidden dark:inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                    <svg class="w-5 h-5 inline-block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </span>
+            </button>
+        </div>
+
+        <div id="loading" class="text-center text-gray-600 dark:text-gray-400 py-8">
+            Loading models...
+        </div>
+
+        <div id="content" class="hidden">
+            <div class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="search" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Models:</label>
+                    <input type="text" id="search" placeholder="Type to search..." class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="provider-filter" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Provider:</label>
+                    <select id="provider-filter" class="w-full px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="all">All Providers</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="models-container" class="space-y-8"></div>
+        </div>
+
+        <div id="error" class="hidden text-center text-red-600 py-8"></div>
+    </div>
+
+    <script>
+        const modelFiles = [
+            "models/gemini.json",
+            "models/groq.json",
+            "models/openrouter.json",
+            "models/sambanova.json"
+        ];
+
+        let allModels = [];
+        let modelsByProvider = {};
+        let loadErrors = [];
+let currentSort = { column: "total_tokens", direction: "desc" };
+        let searchQuery = "";
+
+        /**
+         * Fetches model data from JSON files and renders them to the page.
+         * Handles loading state, error handling, and grouping by provider.
+         * @returns {Promise<void>}
+         */
+        async function fetchModels() {
+            try {
+                const promises = modelFiles.map(file =>
+                    fetch(file)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP ${response.status}`);
+                            }
+                            return response.json();
+                        })
+                        .catch(err => {
+                            loadErrors.push({ file, error: err.message });
+                            console.error(`Error loading ${file}:`, err);
+                            return [];
+                        })
+                );
+
+                const results = await Promise.all(promises);
+                allModels = results.flat();
+
+                if (allModels.length === 0) {
+                    throw new Error("No models found");
+                }
+
+                groupModelsByProvider();
+                populateFilter();
+                renderModels();
+
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("content").classList.remove("hidden");
+
+                // Show warning if some files failed to load
+                if (loadErrors.length > 0) {
+                    const warning = document.createElement("div");
+                    warning.className = "mb-4 p-4 bg-yellow-100 dark:bg-yellow-900 border border-yellow-400 dark:border-yellow-600 rounded-md";
+                    warning.innerHTML = `
+                        <p class="text-yellow-800 dark:text-yellow-200 text-sm">
+                            <strong>Warning:</strong> Failed to load: ${loadErrors.map(e => e.file).join(", ")}
+                        </p>
+                    `;
+                    document.getElementById("content").prepend(warning);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("loading").classList.add("hidden");
+                document.getElementById("error").classList.remove("hidden");
+                document.getElementById("error").textContent = `Error loading models: ${error.message}`;
+            }
+        }
+
+        /**
+         * Groups all loaded models by their provider name.
+         * Populates the modelsByProvider object with provider keys mapping to model arrays.
+         * @returns {void}
+         */
+        function groupModelsByProvider() {
+            modelsByProvider = {};
+            allModels.forEach(model => {
+                const provider = model.provider;
+                if (!modelsByProvider[provider]) {
+                    modelsByProvider[provider] = [];
+                }
+                modelsByProvider[provider].push(model);
+            });
+        }
+
+        /**
+         * Populates the provider filter dropdown with available providers.
+         * Adds event listener for provider selection changes.
+         * @returns {void}
+         */
+        function populateFilter() {
+            const filter = document.getElementById("provider-filter");
+            const providers = Object.keys(modelsByProvider).sort();
+
+            providers.forEach(provider => {
+                const option = document.createElement("option");
+                option.value = provider;
+                option.textContent = `${provider} (${modelsByProvider[provider].length})`;
+                filter.appendChild(option);
+            });
+
+            filter.addEventListener("change", (e) => {
+                renderModels(e.target.value);
+            });
+        }
+
+        /**
+         * Renders the models table for the selected provider or all providers.
+         * Applies search filtering and sorting before rendering.
+         * @param {string} [selectedProvider="all"] - The provider to display, or "all" for every provider.
+         * @returns {void}
+         */
+        function renderModels(selectedProvider = "all") {
+            const container = document.getElementById("models-container");
+            container.innerHTML = "";
+
+            const providers = selectedProvider === "all"
+                ? Object.keys(modelsByProvider).sort()
+                : [selectedProvider];
+
+            providers.forEach(provider => {
+                let models = modelsByProvider[provider];
+                if (!models) return;
+
+                if (searchQuery) {
+                    models = models.filter(model => model.id.toLowerCase().includes(searchQuery.toLowerCase()));
+                }
+
+                if (currentSort.column) {
+                    models = sortModels(models, currentSort.column, currentSort.direction);
+                }
+
+                if (models.length === 0) return;
+
+                const providerSection = document.createElement("div");
+                providerSection.className = "bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden";
+
+                providerSection.innerHTML = `
+                    <div class="bg-blue-600 text-white px-6 py-4">
+                        <h2 class="text-xl font-semibold">${provider}</h2>
+                        <p class="text-sm text-blue-100">${models.length} model${models.length !== 1 ? "s" : ""}</p>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-gray-50 dark:bg-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 select-none" onclick="sortBy('id')">
+                                        Model ID
+                                        ${currentSort.column === "id" ? (currentSort.direction === "asc" ? " ↑" : " ↓") : ""}
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 select-none" onclick="sortBy('context_length')">
+                                        Context Length
+                                        ${currentSort.column === "context_length" ? (currentSort.direction === "asc" ? " ↑" : " ↓") : ""}
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-600 select-none" onclick="sortBy('max_completion_tokens')">
+                                        Max Completion Tokens
+                                        ${currentSort.column === "max_completion_tokens" ? (currentSort.direction === "asc" ? " ↑" : " ↓") : ""}
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+                                ${models.map(model => `
+                                    <tr class="hover:bg-gray-50 dark:hover:bg-gray-700" ondblclick="copyToClipboard('${model.id}')">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                                            <div class="flex items-center space-x-2">
+                                                <span>${model.id}</span>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${formatTokens(model.context_length)}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">${formatTokens(model.max_completion_tokens)}</td>
+                                    </tr>
+                                `).join("")}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+
+                container.appendChild(providerSection);
+            });
+        }
+
+        /**
+         * Handles column header click to toggle or change sorting.
+         * If the same column is clicked again, the sort direction flips.
+         * @param {string} column - The column name to sort by (e.g. "id", "context_length").
+         * @returns {void}
+         */
+        function sortBy(column) {
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === "asc" ? "desc" : "asc";
+            } else {
+                currentSort.column = column;
+                currentSort.direction = "asc";
+            }
+            renderModels(document.getElementById("provider-filter").value);
+        }
+
+        /**
+         * Sorts an array of model objects by the specified column.
+         * Handles both numeric values and legacy "k" format strings.
+         * @param {Array<Object>} models - The array of model objects to sort.
+         * @param {string} column - The column/property name to sort by.
+         * @param {string} direction - The sort direction, either "asc" or "desc".
+         * @returns {Array<Object>} A new sorted array of model objects.
+         */
+function sortModels(models, column, direction) {
+    return [...models].sort((a, b) => {
+        let valA, valB;
+
+        if (column === "total_tokens") {
+            // Helper to parse token values (handles numbers and "k" strings)
+            const parseToken = (value) => {
+                if (typeof value === "number") return value;
+                if (typeof value === "string" && value.endsWith("k")) {
+                    return parseInt(value) * 1000;
+                }
+                return parseInt(value) || 0;
+            };
+            valA = parseToken(a.context_length) + parseToken(a.max_completion_tokens);
+            valB = parseToken(b.context_length) + parseToken(b.max_completion_tokens);
+        } else {
+            valA = a[column];
+            valB = b[column];
+
+            // Handle legacy "k" format strings (backward compatibility)
+            if (typeof valA === "string" && valA.endsWith("k")) {
+                valA = parseInt(valA) * 1000;
+            }
+            if (typeof valB === "string" && valB.endsWith("k")) {
+                valB = parseInt(valB) * 1000;
+            }
+        }
+
+        // Compare the two values
+        if (direction === "asc") {
+            return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+            return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+    });
+}
+
+        /**
+         * Formats token values for display.
+         * Handles both numeric values and legacy "k" format strings.
+         * @param {number|string} value - The token value to format.
+         * @returns {string} The formatted string.
+         */
+        function formatTokens(value) {
+            if (typeof value === "number") {
+                return value.toLocaleString();
+            } else if (typeof value === "string" && value.endsWith("k")) {
+                const num = parseInt(value) * 1000;
+                return num.toLocaleString();
+            }
+            return value;
+        }
+
+        /**
+         * Copies the given text to the clipboard and shows a toast notification.
+         * Displays success or error message for 2 seconds.
+         * @param {string} text - The text to copy to the clipboard.
+         * @returns {void}
+         */
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                const toast = document.getElementById("toast");
+                toast.textContent = `Copied: ${text}`;
+                toast.classList.remove("hidden");
+                setTimeout(() => {
+                    toast.classList.add("hidden");
+                }, 2000);
+            }).catch(err => {
+                console.error("Failed to copy:", err);
+                const toast = document.getElementById("toast");
+                toast.textContent = "Failed to copy";
+                toast.classList.remove("hidden");
+                setTimeout(() => {
+                    toast.classList.add("hidden");
+                }, 2000);
+            });
+        }
+
+        // Search functionality
+        document.getElementById("search").addEventListener("input", (e) => {
+            searchQuery = e.target.value;
+            renderModels(document.getElementById("provider-filter").value);
+        });
+
+        fetchModels();
+
+        // Dark mode toggle
+        const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+        const savedDarkMode = localStorage.getItem("dark-mode");
+        if (savedDarkMode === "true" || savedDarkMode === null) {
+            document.documentElement.classList.add("dark");
+        }
+
+        darkModeToggle.addEventListener("click", () => {
+            document.documentElement.classList.toggle("dark");
+            const isDark = document.documentElement.classList.contains("dark");
+            localStorage.setItem("dark-mode", isDark);
+        });
+    </script>
+    <div id="toast" class="fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-md shadow-lg hidden z-50"></div>
+</body>
+</html>
