@@ -64,7 +64,7 @@
         let allModels = [];
         let modelsByProvider = {};
         let loadErrors = [];
-        let currentSort = { column: null, direction: "asc" };
+let currentSort = { column: "total_tokens", direction: "desc" };
         let searchQuery = "";
 
         /**
@@ -258,27 +258,42 @@
          * @param {string} direction - The sort direction, either "asc" or "desc".
          * @returns {Array<Object>} A new sorted array of model objects.
          */
-        function sortModels(models, column, direction) {
-            return [...models].sort((a, b) => {
-                let valA = a[column];
-                let valB = b[column];
+function sortModels(models, column, direction) {
+    return [...models].sort((a, b) => {
+        let valA, valB;
 
-                // Handle legacy "k" format strings (backward compatibility)
-                if (typeof valA === "string" && valA.endsWith("k")) {
-                    valA = parseInt(valA) * 1000;
+        if (column === "total_tokens") {
+            // Helper to parse token values (handles numbers and "k" strings)
+            const parseToken = (value) => {
+                if (typeof value === "number") return value;
+                if (typeof value === "string" && value.endsWith("k")) {
+                    return parseInt(value) * 1000;
                 }
-                if (typeof valB === "string" && valB.endsWith("k")) {
-                    valB = parseInt(valB) * 1000;
-                }
+                return parseInt(value) || 0;
+            };
+            valA = parseToken(a.context_length) + parseToken(a.max_completion_tokens);
+            valB = parseToken(b.context_length) + parseToken(b.max_completion_tokens);
+        } else {
+            valA = a[column];
+            valB = b[column];
 
-                // Compare the two values
-                if (direction === "asc") {
-                    return valA > valB ? 1 : valA < valB ? -1 : 0;
-                } else {
-                    return valA < valB ? 1 : valA > valB ? -1 : 0;
-                }
-            });
+            // Handle legacy "k" format strings (backward compatibility)
+            if (typeof valA === "string" && valA.endsWith("k")) {
+                valA = parseInt(valA) * 1000;
+            }
+            if (typeof valB === "string" && valB.endsWith("k")) {
+                valB = parseInt(valB) * 1000;
+            }
         }
+
+        // Compare the two values
+        if (direction === "asc") {
+            return valA > valB ? 1 : valA < valB ? -1 : 0;
+        } else {
+            return valA < valB ? 1 : valA > valB ? -1 : 0;
+        }
+    });
+}
 
         /**
          * Formats token values for display.
