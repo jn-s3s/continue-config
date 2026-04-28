@@ -2,37 +2,37 @@
     {
         "id": "DeepSeek-V3.1",
         "provider": "sambanova",
-        "context_length": "131k",
-        "max_completion_tokens": "7k"
+        "context_length": 131072,
+        "max_completion_tokens": 7168
     },
     {
         "id": "DeepSeek-V3.1-cb",
         "provider": "sambanova",
-        "context_length": "32k",
-        "max_completion_tokens": "32k"
+        "context_length": 32768,
+        "max_completion_tokens": 32768
     },
     {
         "id": "DeepSeek-V3.2",
         "provider": "sambanova",
-        "context_length": "32k",
-        "max_completion_tokens": "7k"
+        "context_length": 32768,
+        "max_completion_tokens": 7168
     },
     {
         "id": "MiniMax-M2.5",
         "provider": "sambanova",
-        "context_length": "163k",
-        "max_completion_tokens": "163k"
+        "context_length": 163840,
+        "max_completion_tokens": 163840
     },
     {
         "id": "gemma-3-12b-it",
         "provider": "sambanova",
-        "context_length": "131k",
-        "max_completion_tokens": "131k"
+        "context_length": 131072,
+        "max_completion_tokens": 131072
     },
     {
         "id": "gpt-oss-120b",
         "provider": "sambanova",
-        "context_length": "131k",
-        "max_completion_tokens": "131k"
+        "context_length": 131072,
+        "max_completion_tokens": 131072
     }
 ]

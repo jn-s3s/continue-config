@@ -1,56 +1,56 @@
 [
     {
+        "id": "llama-3.1-8b-instant",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 131072
+    },
+    {
         "id": "groq/compound",
         "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "8k"
-    },
-    {
-        "id": "groq/compound-mini",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "8k"
-    },
-    {
-        "id": "openai/gpt-oss-safeguard-20b",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "65k"
-    },
-    {
-        "id": "llama-3.3-70b-versatile",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "32k"
-    },
-    {
-        "id": "meta-llama/llama-4-scout-17b-16e-instruct",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "8k"
-    },
-    {
-        "id": "openai/gpt-oss-20b",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "65k"
-    },
-    {
-        "id": "qwen/qwen3-32b",
-        "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "40k"
+        "context_length": 131072,
+        "max_completion_tokens": 8192
     },
     {
         "id": "openai/gpt-oss-120b",
         "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "65k"
+        "context_length": 131072,
+        "max_completion_tokens": 65536
     },
     {
-        "id": "llama-3.1-8b-instant",
+        "id": "meta-llama/llama-4-scout-17b-16e-instruct",
         "provider": "groq",
-        "context_length": "131k",
-        "max_completion_tokens": "131k"
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "qwen/qwen3-32b",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 40960
+    },
+    {
+        "id": "groq/compound-mini",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "openai/gpt-oss-safeguard-20b",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "openai/gpt-oss-20b",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "llama-3.3-70b-versatile",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 32768
     }
 ]

@@ -2,97 +2,97 @@
     {
         "id": "inclusionai/ling-2.6-1t:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "32k"
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "tencent/hy3-preview:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "262k"
+        "context_length": 262144,
+        "max_completion_tokens": 262144
     },
     {
         "id": "inclusionai/ling-2.6-flash:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "32k"
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "baidu/qianfan-ocr-fast:free",
         "provider": "openrouter",
-        "context_length": "65k",
-        "max_completion_tokens": "28k"
+        "context_length": 65536,
+        "max_completion_tokens": 28672
     },
     {
         "id": "google/gemma-4-26b-a4b-it:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "32k"
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "google/gemma-4-31b-it:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "32k"
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "262k"
+        "context_length": 262144,
+        "max_completion_tokens": 262144
     },
     {
         "id": "minimax/minimax-m2.5:free",
         "provider": "openrouter",
-        "context_length": "196k",
-        "max_completion_tokens": "8k"
+        "context_length": 196608,
+        "max_completion_tokens": 8192
     },
     {
         "id": "nvidia/nemotron-nano-12b-v2-vl:free",
         "provider": "openrouter",
-        "context_length": "128k",
-        "max_completion_tokens": "128k"
+        "context_length": 128000,
+        "max_completion_tokens": 128000
     },
     {
         "id": "openai/gpt-oss-120b:free",
         "provider": "openrouter",
-        "context_length": "131k",
-        "max_completion_tokens": "131k"
+        "context_length": 131072,
+        "max_completion_tokens": 131072
     },
     {
         "id": "openai/gpt-oss-20b:free",
         "provider": "openrouter",
-        "context_length": "131k",
-        "max_completion_tokens": "8k"
+        "context_length": 131072,
+        "max_completion_tokens": 8192
     },
     {
         "id": "z-ai/glm-4.5-air:free",
         "provider": "openrouter",
-        "context_length": "131k",
-        "max_completion_tokens": "96k"
+        "context_length": 131072,
+        "max_completion_tokens": 96000
     },
     {
         "id": "qwen/qwen3-coder:free",
         "provider": "openrouter",
-        "context_length": "262k",
-        "max_completion_tokens": "262k"
+        "context_length": 262000,
+        "max_completion_tokens": 262000
     },
     {
         "id": "google/gemma-3-4b-it:free",
         "provider": "openrouter",
-        "context_length": "32k",
-        "max_completion_tokens": "8k"
+        "context_length": 32768,
+        "max_completion_tokens": 8192
     },
     {
         "id": "google/gemma-3-12b-it:free",
         "provider": "openrouter",
-        "context_length": "32k",
-        "max_completion_tokens": "8k"
+        "context_length": 32768,
+        "max_completion_tokens": 8192
     },
     {
         "id": "google/gemma-3-27b-it:free",
         "provider": "openrouter",
-        "context_length": "131k",
-        "max_completion_tokens": "8k"
+        "context_length": 131072,
+        "max_completion_tokens": 8192
     }
 ]
