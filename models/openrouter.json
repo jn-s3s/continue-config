@@ -1,5 +1,23 @@
 [
     {
+        "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+        "provider": "openrouter",
+        "context_length": 256000,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "poolside/laguna-xs.2:free",
+        "provider": "openrouter",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "poolside/laguna-m.1:free",
+        "provider": "openrouter",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
         "id": "inclusionai/ling-2.6-1t:free",
         "provider": "openrouter",
         "context_length": 262144,
@@ -10,12 +28,6 @@
         "provider": "openrouter",
         "context_length": 262144,
         "max_completion_tokens": 262144
-    },
-    {
-        "id": "inclusionai/ling-2.6-flash:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 32768
     },
     {
         "id": "baidu/qianfan-ocr-fast:free",
