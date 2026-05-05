@@ -21,7 +21,13 @@
         "id": "MiniMax-M2.5",
         "provider": "sambanova",
         "context_length": 163840,
-        "max_completion_tokens": 163840
+        "max_completion_tokens": 32768
+    },
+    {
+        "id": "MiniMax-M2.7",
+        "provider": "sambanova",
+        "context_length": 196608,
+        "max_completion_tokens": 196608
     },
     {
         "id": "gemma-3-12b-it",
