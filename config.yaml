@@ -1,64 +1,66 @@
 name: Continue Elite Configs
-version: 4.5.0
+version: 4.6.0
 schema: v1
 models:
-  - name: 1.1 Fast | Llama-4-Scout | Groq | 131k/8k
-    provider: groq
-    model: meta-llama/llama-4-scout-17b-16e-instruct
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.2 Fast | Groq Compound | Groq | 131k/8k
-    provider: groq
-    model: groq/compound
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.3 Fast | Groq Compound Mini | Groq | 131k/8k
+  - name: 1.1 Fast | DeepSeek-V3.1-cb | sambanova | 32k/32k
+    provider: sambanova
+    model: DeepSeek-V3.1-cb
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.2 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
+    provider: sambanova
+    model: DeepSeek-V3.2
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.3 Fast | groq/compound-mini | groq | 131k/8k
     provider: groq
     model: groq/compound-mini
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.4 Fast | Llama-3.1-8b-Instant | Groq | 131k/131k
+  - name: 1.4 Fast | llama-3.1-8b-instant | groq | 131k/131k
     provider: groq
     model: llama-3.1-8b-instant
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.5 Fast | DeepSeek-V3.1 | Sambanova | 131k/7k
-    provider: sambanova
-    model: DeepSeek-V3.1
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.1 Refactor Specialist | MiniMax-M2.7 | Sambanova | 196k/196k
-    provider: sambanova
-    model: MiniMax-M2.7
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.2 Refactor Specialist | MiniMax-M2.5 | Sambanova | 163k/32k
+  - name: 1.5 Fast | MiniMax-M2.5 | sambanova | 163k/32k
     provider: sambanova
     model: MiniMax-M2.5
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.3 Refactor Specialist | Llama-3.3-70b-Versatile | Groq | 131k/32k
+
+  - name: 2.1 Refactor Specialist | llama-3.3-70b-versatile | groq | 131k/32k
     provider: groq
     model: llama-3.3-70b-versatile
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.4 Refactor Specialist | Gemma-3-12b-it | Sambanova | 131k/131k
-    provider: sambanova
-    model: gemma-3-12b-it
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.5 Refactor Specialist | GPT-OSS-120b | Groq | 131k/65k
+  - name: 2.2 Refactor Specialist | qwen/qwen3-32b | groq | 131k/40k
     provider: groq
-    model: openai/gpt-oss-120b
+    model: qwen/qwen3-32b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 3.1 Deep Thinker | Gemini-2.5-Pro | Gemini | 1048k/65k
+  - name: 2.3 Refactor Specialist | MiniMax-M2.7 | sambanova | 196k/196k
+    provider: sambanova
+    model: MiniMax-M2.7
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.4 Refactor Specialist | gemini-2.5-pro | gemini | 1048k/65k
     provider: gemini
     model: gemini-2.5-pro
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.2 Deep Thinker | Gemini-3-Pro-Preview | Gemini | 1048k/65k
+  - name: 2.5 Refactor Specialist | openai/gpt-oss-120b | openrouter | 131k/131k
+    provider: openrouter
+    model: openai/gpt-oss-120b:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+
+  - name: 3.1 Thinker | gemini-2.5-pro | gemini | 1048k/65k
     provider: gemini
-    model: gemini-3-pro-preview
+    model: gemini-2.5-pro
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.3 Deep Thinker | Gemini-Flash-Latest | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-flash-latest
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Deep Thinker | Gemini-Pro-Latest | Gemini | 1048k/65k
+  - name: 3.2 Thinker | gemini-pro-latest | gemini | 1048k/65k
     provider: gemini
     model: gemini-pro-latest
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.5 Deep Thinker | Gemini-2.0-Flash | Gemini | 1048k/8k
+  - name: 3.3 Thinker | gemini-flash-latest | gemini | 1048k/65k
     provider: gemini
-    model: gemini-2.0-flash
+    model: gemini-flash-latest
     apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.4 Thinker | qwen/qwen3-coder | openrouter | 262k/262k
+    provider: openrouter
+    model: qwen/qwen3-coder:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.5 Thinker | nvidia/nemotron-3-super-120b-a12b | openrouter | 262k/262k
+    provider: openrouter
+    model: nvidia/nemotron-3-super-120b-a12b:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}

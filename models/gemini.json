@@ -120,6 +120,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "gemini-3.1-flash-lite",
+        "provider": "gemini",
+        "context_length": 1048576,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "gemini-3-pro-image-preview",
         "provider": "gemini",
         "context_length": 131072,

@@ -24,12 +24,6 @@
         "max_completion_tokens": 8192
     },
     {
-        "id": "inclusionai/ling-2.6-1t:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 32768
-    },
-    {
         "id": "tencent/hy3-preview:free",
         "provider": "openrouter",
         "context_length": 262144,
