@@ -1,5 +1,11 @@
 [
     {
+        "id": "inclusionai/ring-2.6-1t:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "baidu/cobuddy:free",
         "provider": "openrouter",
         "context_length": 131072,
@@ -22,12 +28,6 @@
         "provider": "openrouter",
         "context_length": 131072,
         "max_completion_tokens": 8192
-    },
-    {
-        "id": "tencent/hy3-preview:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 262144
     },
     {
         "id": "baidu/qianfan-ocr-fast:free",
