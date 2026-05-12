@@ -48,6 +48,12 @@
         "max_completion_tokens": 32768
     },
     {
+        "id": "arcee-ai/trinity-large-thinking:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 80000
+    },
+    {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
         "provider": "openrouter",
         "context_length": 262144,
