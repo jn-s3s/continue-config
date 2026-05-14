@@ -30,6 +30,12 @@
         "max_completion_tokens": 8192
     },
     {
+        "id": "deepseek/deepseek-v4-flash:free",
+        "provider": "openrouter",
+        "context_length": 256000,
+        "max_completion_tokens": 256000
+    },
+    {
         "id": "baidu/qianfan-ocr-fast:free",
         "provider": "openrouter",
         "context_length": 65536,
