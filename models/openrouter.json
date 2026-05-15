@@ -32,14 +32,8 @@
     {
         "id": "deepseek/deepseek-v4-flash:free",
         "provider": "openrouter",
-        "context_length": 256000,
-        "max_completion_tokens": 256000
-    },
-    {
-        "id": "baidu/qianfan-ocr-fast:free",
-        "provider": "openrouter",
-        "context_length": 65536,
-        "max_completion_tokens": 28672
+        "context_length": 1048576,
+        "max_completion_tokens": 384000
     },
     {
         "id": "google/gemma-4-26b-a4b-it:free",
