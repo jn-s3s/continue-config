@@ -144,6 +144,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "gemini-3.5-flash",
+        "provider": "gemini",
+        "context_length": 1048576,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "lyria-3-clip-preview",
         "provider": "gemini",
         "context_length": 1048576,
@@ -180,6 +186,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "antigravity-preview-05-2026",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "deep-research-max-preview-04-2026",
         "provider": "gemini",
         "context_length": 131072,
@@ -208,17 +220,5 @@
         "provider": "gemini",
         "context_length": 131072,
         "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-2.5-flash-native-audio-preview-12-2025",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-3.1-flash-live-preview",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 65536
     }
 ]
