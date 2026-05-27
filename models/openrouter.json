@@ -20,8 +20,8 @@
     {
         "id": "poolside/laguna-m.1:free",
         "provider": "openrouter",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "deepseek/deepseek-v4-flash:free",
@@ -40,12 +40,6 @@
         "provider": "openrouter",
         "context_length": 262144,
         "max_completion_tokens": 32768
-    },
-    {
-        "id": "arcee-ai/trinity-large-thinking:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 80000
     },
     {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",

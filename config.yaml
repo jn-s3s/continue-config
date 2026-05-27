@@ -1,59 +1,64 @@
 name: Continue Elite Configs
-version: 4.14.0
+version: 4.15.0
 schema: v1
 models:
-  - name: 1.1 Fast | Llama-4-Scout | Groq | 131k/8k
-    provider: groq
-    model: meta-llama/llama-4-scout-17b-16e-instruct
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.2 Fast | Compound Mini | Groq | 131k/8k
+  - name: 1.1 Fast | compound-mini | Groq | 131k/8k
     provider: groq
     model: groq/compound-mini
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.3 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
-    provider: sambanova
-    model: DeepSeek-V3.2
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.2 Fast | compound | Groq | 131k/8k
+    provider: groq
+    model: groq/compound
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.3 Fast | llama-4-scout-17b-16e-instruct | Groq | 131k/8k
+    provider: groq
+    model: meta-llama/llama-4-scout-17b-16e-instruct
+    apiKey: ${{ secrets.GROQ_API_KEY }}
   - name: 1.4 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
     provider: sambanova
     model: DeepSeek-V3.1
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.5 Fast | Compound | Groq | 131k/8k
+  - name: 1.5 Fast | openai/gpt-oss-safeguard-20b | Groq | 131k/65k
     provider: groq
-    model: groq/compound
+    model: openai/gpt-oss-safeguard-20b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.1 Refactor Specialist | llama-3.1-8b-instant | Groq | 131k/131k
-    provider: groq
-    model: llama-3.1-8b-instant
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.2 Refactor Specialist | llama-3.3-70b-versatile | Groq | 131k/32k
-    provider: groq
-    model: llama-3.3-70b-versatile
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.3 Refactor Specialist | gpt-oss-120b | SambaNova | 131k/131k
+  - name: 2.1 Refactor | MiniMax-M2.7 | SambaNova | 196k/196k
     provider: sambanova
-    model: gpt-oss-120b
+    model: MiniMax-M2.7
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.4 Refactor Specialist | gemma-3-12b-it | SambaNova | 131k/131k
+  - name: 2.2 Refactor | gemma-3-12b-it | SambaNova | 131k/131k
     provider: sambanova
     model: gemma-3-12b-it
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.5 Refactor Specialist | gpt-oss-20b | Groq | 131k/65k
+  - name: 2.3 Refactor | llama-3.3-70b-versatile | Groq | 131k/32k
     provider: groq
-    model: openai/gpt-oss-20b
+    model: llama-3.3-70b-versatile
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 3.1 Thinker | gemini-2.5-flash | Gemini | 1048k/65k
+  - name: 2.4 Refactor | llama-3.1-8b-instant | Groq | 131k/131k
+    provider: groq
+    model: llama-3.1-8b-instant
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.5 Refactor | openai/gpt-oss-120b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-120b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 3.1 Think | gemini-2.5-flash | Gemini | 1048k/65k
     provider: gemini
     model: gemini-2.5-flash
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.2 Thinker | gemini-2.5-pro | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-2.5-pro
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.3 Thinker | gemini-pro-latest | Gemini | 1048k/65k
+  - name: 3.2 Think | gemini-pro-latest | Gemini | 1048k/65k
     provider: gemini
     model: gemini-pro-latest
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Thinker | trinity-large-thinking | OpenRouter | 262k/80k
-    provider: openrouter
-    model: arcee
+  - name: 3.3 Think | gemini-3-pro-preview | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3-pro-preview
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.4 Think | gemini-3-flash-preview | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3-flash-preview
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.5 Think | gemini-3.1-pro-preview | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3.1-pro-preview
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
