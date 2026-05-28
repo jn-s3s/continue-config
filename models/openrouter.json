@@ -1,11 +1,5 @@
 [
     {
-        "id": "baidu/cobuddy:free",
-        "provider": "openrouter",
-        "context_length": 131072,
-        "max_completion_tokens": 65536
-    },
-    {
         "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
         "provider": "openrouter",
         "context_length": 256000,
@@ -14,8 +8,8 @@
     {
         "id": "poolside/laguna-xs.2:free",
         "provider": "openrouter",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
+        "context_length": 262144,
+        "max_completion_tokens": 32768
     },
     {
         "id": "poolside/laguna-m.1:free",
@@ -50,7 +44,7 @@
     {
         "id": "minimax/minimax-m2.5:free",
         "provider": "openrouter",
-        "context_length": 204800,
+        "context_length": 262144,
         "max_completion_tokens": 8192
     },
     {
