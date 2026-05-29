@@ -132,6 +132,12 @@
         "max_completion_tokens": 32768
     },
     {
+        "id": "gemini-3-pro-image",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "nano-banana-pro-preview",
         "provider": "gemini",
         "context_length": 131072,
@@ -139,6 +145,12 @@
     },
     {
         "id": "gemini-3.1-flash-image-preview",
+        "provider": "gemini",
+        "context_length": 65536,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "gemini-3.1-flash-image",
         "provider": "gemini",
         "context_length": 65536,
         "max_completion_tokens": 65536
@@ -208,17 +220,5 @@
         "provider": "gemini",
         "context_length": 131072,
         "max_completion_tokens": 65536
-    },
-    {
-        "id": "gemini-2.5-flash-native-audio-latest",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-2.5-flash-native-audio-preview-09-2025",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
     }
 ]

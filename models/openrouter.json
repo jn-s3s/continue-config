@@ -44,7 +44,7 @@
     {
         "id": "minimax/minimax-m2.5:free",
         "provider": "openrouter",
-        "context_length": 262144,
+        "context_length": 204800,
         "max_completion_tokens": 8192
     },
     {
