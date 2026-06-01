@@ -18,12 +18,6 @@
         "max_completion_tokens": 32768
     },
     {
-        "id": "deepseek/deepseek-v4-flash:free",
-        "provider": "openrouter",
-        "context_length": 1048576,
-        "max_completion_tokens": 384000
-    },
-    {
         "id": "google/gemma-4-26b-a4b-it:free",
         "provider": "openrouter",
         "context_length": 262144,
