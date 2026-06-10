@@ -72,12 +72,6 @@
         "max_completion_tokens": 8192
     },
     {
-        "id": "z-ai/glm-4.5-air:free",
-        "provider": "openrouter",
-        "context_length": 131072,
-        "max_completion_tokens": 96000
-    },
-    {
         "id": "qwen/qwen3-coder:free",
         "provider": "openrouter",
         "context_length": 1048576,
