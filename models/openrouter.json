@@ -1,5 +1,11 @@
 [
     {
+        "id": "cohere/north-mini-code:free",
+        "provider": "openrouter",
+        "context_length": 256000,
+        "max_completion_tokens": 64000
+    },
+    {
         "id": "nex-agi/nex-n2-pro:free",
         "provider": "openrouter",
         "context_length": 262144,
@@ -45,7 +51,7 @@
         "id": "google/gemma-4-31b-it:free",
         "provider": "openrouter",
         "context_length": 262144,
-        "max_completion_tokens": 32768
+        "max_completion_tokens": 8192
     },
     {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
@@ -69,7 +75,7 @@
         "id": "openai/gpt-oss-20b:free",
         "provider": "openrouter",
         "context_length": 131072,
-        "max_completion_tokens": 8192
+        "max_completion_tokens": 32768
     },
     {
         "id": "qwen/qwen3-coder:free",
