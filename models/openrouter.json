@@ -6,12 +6,6 @@
         "max_completion_tokens": 64000
     },
     {
-        "id": "nex-agi/nex-n2-pro:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 256000
-    },
-    {
         "id": "nvidia/nemotron-3.5-content-safety:free",
         "provider": "openrouter",
         "context_length": 128000,
