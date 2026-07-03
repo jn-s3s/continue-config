@@ -1,5 +1,11 @@
 [
     {
+        "id": "poolside/laguna-xs-2.1:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "cohere/north-mini-code:free",
         "provider": "openrouter",
         "context_length": 256000,
