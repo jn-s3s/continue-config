@@ -1,69 +1,64 @@
 name: Continue Elite Configs
-version: 4.33.0
+version: 4.34.0
 schema: v1
 models:
-  # Fast coding chatter
-  - name: 1.1 Fast | groq/compound | Groq | 131k/8k
-    provider: groq
-    model: groq/compound
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.2 Fast | meta-llama/llama-4-scout-17b-16e-instruct | Groq | 131k/8k
-    provider: groq
-    model: meta-llama/llama-4-scout-17b-16e-instruct
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.3 Fast | groq/compound-mini | Groq | 131k/8k
+  - name: 1.1 Fast | compound-mini | groq | 131k/8k
     provider: groq
     model: groq/compound-mini
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.4 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
-    provider: sambanova
-    model: DeepSeek-V3.2
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.5 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
+  - name: 1.2 Fast | compound | groq | 131k/8k
+    provider: groq
+    model: groq/compound
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.3 Fast | DeepSeek-V3.1 | sambanova | 131k/7k
     provider: sambanova
     model: DeepSeek-V3.1
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-
-  # Code review chatter
-  - name: 2.1 Refactor | qwen3-32b | Groq | 131k/40k
-    provider: groq
-    model: qwen/qwen3-32b
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.2 Refactor | llama-3.1-8b-instant | Groq | 131k/131k
+  - name: 1.4 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
+    provider: sambanova
+    model: DeepSeek-V3.2
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.5 Fast | llama-3.1-8b-instant | groq | 131k/131k
     provider: groq
     model: llama-3.1-8b-instant
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.3 Refactor | gemma-4-31B-it | SambaNova | 131k/131k
-    provider: sambanova
-    model: gemma-4-31B-it
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.4 Refactor | gpt-oss-120b | Groq | 131k/65k
+  - name: 2.1 Refactor Specialist | llama-3.3-70b-versatile | groq | 131k/32k
+    provider: groq
+    model: llama-3.3-70b-versatile
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Refactor Specialist | gpt-oss-120b | groq | 131k/65k
     provider: groq
     model: openai/gpt-oss-120b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.5 Refactor | qwen3.6-27b | Groq | 131k/32k
+  - name: 2.3 Refactor Specialist | gemma-4-31B-it | sambanova | 131k/131k
+    provider: sambanova
+    model: gemma-4-31B-it
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.4 Refactor Specialist | gpt-oss-20b | groq | 131k/65k
     provider: groq
-    model: qwen/qwen3.6-27b
+    model: openai/gpt-oss-20b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-
-  # Deep thinking chatter
-  - name: 3.1 Think | gemini-2.5-pro | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-2.5-pro
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.2 Think | gemini-3-pro-preview | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-3-pro-preview
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.3 Think | gemini-flash-latest | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-flash-latest
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Think | qwen3-coder | OpenRouter | 1048k/262k
-    provider: openrouter
-    model: qwen/qwen3-coder:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.5 Think | nemotron-3-super-120b-a12b | OpenRouter | 1000k/262k
+  - name: 2.5 Refactor Specialist | gpt-oss-safeguard-20b | groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-safeguard-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 3.1 Deep Thinker | nemotron-3-super-120b-a12b:free | openrouter | 1000k/262k
     provider: openrouter
     model: nvidia/nemotron-3-super-120b-a12b:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.2 Deep Thinker | qwen3-coder:free | openrouter | 1048k/262k
+    provider: openrouter
+    model: qwen/qwen3-coder:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.3 Deep Thinker | gemini-pro-latest | gemini | 1048k/65k
+    provider: gemini
+    model: gemini-pro-latest
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.4 Deep Thinker | gemini-3-pro-preview | gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3-pro-preview
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.5 Deep Thinker | gemini-3.5-flash | gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3.5-flash
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
