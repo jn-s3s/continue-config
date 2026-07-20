@@ -70,11 +70,5 @@
         "provider": "openrouter",
         "context_length": 131072,
         "max_completion_tokens": 32768
-    },
-    {
-        "id": "qwen/qwen3-coder:free",
-        "provider": "openrouter",
-        "context_length": 1048576,
-        "max_completion_tokens": 262000
     }
 ]
