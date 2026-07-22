@@ -1,9 +1,9 @@
 [
     {
-        "id": "qwen/qwen3.6-27b",
+        "id": "openai/gpt-oss-20b",
         "provider": "groq",
         "context_length": 131072,
-        "max_completion_tokens": 32768
+        "max_completion_tokens": 65536
     },
     {
         "id": "groq/compound-mini",
@@ -12,7 +12,13 @@
         "max_completion_tokens": 8192
     },
     {
-        "id": "openai/gpt-oss-safeguard-20b",
+        "id": "qwen/qwen3.6-27b",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 16384
+    },
+    {
+        "id": "openai/gpt-oss-120b",
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 65536
@@ -24,19 +30,7 @@
         "max_completion_tokens": 8192
     },
     {
-        "id": "llama-3.1-8b-instant",
-        "provider": "groq",
-        "context_length": 131072,
-        "max_completion_tokens": 131072
-    },
-    {
-        "id": "openai/gpt-oss-20b",
-        "provider": "groq",
-        "context_length": 131072,
-        "max_completion_tokens": 65536
-    },
-    {
-        "id": "openai/gpt-oss-120b",
+        "id": "openai/gpt-oss-safeguard-20b",
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 65536
@@ -46,5 +40,11 @@
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 32768
+    },
+    {
+        "id": "llama-3.1-8b-instant",
+        "provider": "groq",
+        "context_length": 131072,
+        "max_completion_tokens": 131072
     }
 ]

@@ -1,5 +1,11 @@
 [
     {
+        "id": "poolside/laguna-s-2.1:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "poolside/laguna-xs-2.1:free",
         "provider": "openrouter",
         "context_length": 262144,
@@ -50,7 +56,7 @@
     {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
         "provider": "openrouter",
-        "context_length": 1000000,
+        "context_length": 262144,
         "max_completion_tokens": 262144
     },
     {
