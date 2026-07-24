@@ -1,5 +1,11 @@
 [
     {
+        "id": "inclusionai/ling-3.0-flash:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "poolside/laguna-s-2.1:free",
         "provider": "openrouter",
         "context_length": 262144,
