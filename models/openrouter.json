@@ -42,12 +42,6 @@
         "max_completion_tokens": 65536
     },
     {
-        "id": "poolside/laguna-m.1:free",
-        "provider": "openrouter",
-        "context_length": 262144,
-        "max_completion_tokens": 32768
-    },
-    {
         "id": "google/gemma-4-26b-a4b-it:free",
         "provider": "openrouter",
         "context_length": 262144,
