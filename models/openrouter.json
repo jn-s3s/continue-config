@@ -1,6 +1,6 @@
 [
     {
-        "id": "inclusionai/ling-3.0-flash:free",
+        "id": "inclusionai/ling-3.0-tiny:free",
         "provider": "openrouter",
         "context_length": 262144,
         "max_completion_tokens": 32768
