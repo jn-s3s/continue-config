@@ -12,30 +12,6 @@
         "max_completion_tokens": 65536
     },
     {
-        "id": "gemini-2.0-flash",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-2.0-flash-001",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-2.0-flash-lite-001",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 8192
-    },
-    {
-        "id": "gemini-2.0-flash-lite",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 8192
-    },
-    {
         "id": "gemini-2.5-flash-preview-tts",
         "provider": "gemini",
         "context_length": 8192,
@@ -88,12 +64,6 @@
         "provider": "gemini",
         "context_length": 32768,
         "max_completion_tokens": 32768
-    },
-    {
-        "id": "gemini-3-pro-preview",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 65536
     },
     {
         "id": "gemini-3-flash-preview",
@@ -204,12 +174,6 @@
         "max_completion_tokens": 16384
     },
     {
-        "id": "gemini-robotics-er-1.5-preview",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 65536
-    },
-    {
         "id": "gemini-robotics-er-1.6-preview",
         "provider": "gemini",
         "context_length": 131072,
@@ -247,6 +211,30 @@
     },
     {
         "id": "deep-research-pro-preview-12-2025",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "gemini-2.5-flash-native-audio-latest",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "gemini-2.5-flash-native-audio-preview-09-2025",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "gemini-2.5-flash-native-audio-preview-12-2025",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 8192
+    },
+    {
+        "id": "gemini-3.1-flash-live-preview",
         "provider": "gemini",
         "context_length": 131072,
         "max_completion_tokens": 65536
