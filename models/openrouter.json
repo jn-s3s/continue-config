@@ -1,5 +1,11 @@
 [
     {
+        "id": "dots-studio/dots-3-note-preview:free",
+        "provider": "openrouter",
+        "context_length": 512000,
+        "max_completion_tokens": 512000
+    },
+    {
         "id": "liquid/lfm-2.5-2.6b:free",
         "provider": "openrouter",
         "context_length": 128000,
