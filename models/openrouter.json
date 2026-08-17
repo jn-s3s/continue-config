@@ -36,6 +36,12 @@
         "max_completion_tokens": 64000
     },
     {
+        "id": "z-ai/glm-5.2:free",
+        "provider": "openrouter",
+        "context_length": 128000,
+        "max_completion_tokens": 128000
+    },
+    {
         "id": "nvidia/nemotron-3.5-content-safety:free",
         "provider": "openrouter",
         "context_length": 128000,
