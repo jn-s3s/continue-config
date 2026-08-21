@@ -18,6 +18,12 @@
         "max_completion_tokens": 196608
     },
     {
+        "id": "MiniMax-M3",
+        "provider": "sambanova",
+        "context_length": 1048576,
+        "max_completion_tokens": 1048576
+    },
+    {
         "id": "gemma-4-31B-it",
         "provider": "sambanova",
         "context_length": 131072,

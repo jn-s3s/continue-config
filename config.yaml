@@ -1,66 +1,30 @@
-name: Continue Configs
-version: 4.49.0
+name: Continue Elite Configs
+version: 4.50.0
 schema: v1
 models:
-  - name: 1.1 Fast | compound | groq | 131k/8k
-    provider: groq
-    model: groq/compound
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.2 Fast | compound-mini | groq | 131k/8k
+  - name: 1.1 Fast | groq/compound-mini | groq | 131k/8k
     provider: groq
     model: groq/compound-mini
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.3 Fast | qwen3.6-27b | groq | 131k/16k
-    provider: groq
-    model: qwen/qwen3.6-27b
-    apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.4 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
+  - name: 1.2 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
     provider: sambanova
     model: DeepSeek-V3.2
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.5 Fast | DeepSeek-V3.1 | sambanova | 131k/7k
+  - name: 1.3 Fast | groq/compound | groq | 131k/8k
+    provider: groq
+    model: groq/compound
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.4 Fast | DeepSeek-V3.1 | sambanova | 131k/7k
     provider: sambanova
     model: DeepSeek-V3.1
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-
-  - name: 2.1 Review | north-mini-code | openrouter | 256k/64k
+  - name: 1.5 Fast | liquid/lfm-2.5-2.6b:free | openrouter | 128k/8k
     provider: openrouter
-    model: cohere/north-mini-code:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.2 Review | laguna-s-2.1 | openrouter | 262k/32k
-    provider: openrouter
-    model: poolside/laguna-s-2.1:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.3 Review | laguna-xs-2.1 | openrouter | 262k/32k
-    provider: openrouter
-    model: poolside/laguna-xs-2.1:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.4 Review | nemotron-3.5-lightning | openrouter | 1000k/65k
-    provider: openrouter
-    model: nvidia/nemotron-3.5-lightning:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.5 Review | gemma-4-31b-it | openrouter | 262k/32k
-    provider: openrouter
-    model: google/gemma-4-31b-it:free
+    model: liquid/lfm-2.5-2.6b:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
 
-  - name: 3.1 Think | nemotron-3-ultra-550b-a55b | openrouter | 1000k/65k
-    provider: openrouter
-    model: nvidia/nemotron-3-ultra-550b-a55b:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 3.2 Think | gemini-2.5-pro | gemini | 1048k/65k
-    provider: gemini
-    model: gemini-2.5-pro
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.3 Think | gemini-pro-latest | gemini | 1048k/65k
-    provider: gemini
-    model: gemini-pro-latest
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Think | gemini-3.5-flash | gemini | 1048k/65k
-    provider: gemini
-    model: gemini-3.5-flash
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.5 Think | gemini-3.6-flash | gemini | 1048k/65k
-    provider: gemini
-    model: gemini-3.6-flash
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 2.1 Review | qwen/qwen3.6-27b | groq | 131k/16k
+    provider: groq
+    model: qwen/qwen3.6-27b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Review | openai/gpt-oss-20b | groq | 
