@@ -1,30 +1,64 @@
 name: Continue Elite Configs
-version: 4.50.0
+version: 4.51.0
 schema: v1
 models:
-  - name: 1.1 Fast | groq/compound-mini | groq | 131k/8k
+  - name: 1.1 Fast | groq/compound-mini | Groq | 131k/8k
     provider: groq
     model: groq/compound-mini
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.2 Fast | DeepSeek-V3.2 | sambanova | 32k/7k
-    provider: sambanova
-    model: DeepSeek-V3.2
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.3 Fast | groq/compound | groq | 131k/8k
+  - name: 1.2 Fast | groq/compound | Groq | 131k/8k
     provider: groq
     model: groq/compound
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.4 Fast | DeepSeek-V3.1 | sambanova | 131k/7k
-    provider: sambanova
-    model: DeepSeek-V3.1
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.5 Fast | liquid/lfm-2.5-2.6b:free | openrouter | 128k/8k
-    provider: openrouter
-    model: liquid/lfm-2.5-2.6b:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-
-  - name: 2.1 Review | qwen/qwen3.6-27b | groq | 131k/16k
+  - name: 1.3 Fast | qwen/qwen3.6-27b | Groq | 131k/16k
     provider: groq
     model: qwen/qwen3.6-27b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.2 Review | openai/gpt-oss-20b | groq | 
+  - name: 1.4 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
+    provider: sambanova
+    model: DeepSeek-V3.2
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.5 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
+    provider: sambanova
+    model: DeepSeek-V3.1
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.1 Refactor | openai/gpt-oss-120b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-120b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Refactor | openai/gpt-oss-20b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.3 Refactor | openai/gpt-oss-safeguard-20b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-safeguard-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.4 Refactor | gpt-oss-120b | SambaNova | 131k/131k
+    provider: sambanova
+    model: gpt-oss-120b
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 2.5 Refactor | gemma-4-31B-it | SambaNova | 131k/131k
+    provider: sambanova
+    model: gemma-4-31B-it
+    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 3.1 Think | gemini-2.5-pro | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-2.5-pro
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.2 Think | gemini-pro-latest | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-pro-latest
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.3 Think | gemini-flash-latest | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-flash-latest
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.4 Think | gemini-3.1-pro-preview | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3.1-pro-preview
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.5 Think | nvidia/nemotron-3.5-lightning:free | OpenRouter | 1000k/65k
+    provider: openrouter
+    model: nvidia/nemotron-3.5-lightning:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
