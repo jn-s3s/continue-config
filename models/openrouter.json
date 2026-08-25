@@ -20,7 +20,7 @@
     {
         "id": "thinkingmachines/inkling-small:free",
         "provider": "openrouter",
-        "context_length": 262144,
+        "context_length": 1048576,
         "max_completion_tokens": 262144
     },
     {
@@ -32,7 +32,7 @@
     {
         "id": "thinkingmachines/inkling:free",
         "provider": "openrouter",
-        "context_length": 262144,
+        "context_length": 1048576,
         "max_completion_tokens": 262144
     },
     {
@@ -88,11 +88,5 @@
         "provider": "openrouter",
         "context_length": 262144,
         "max_completion_tokens": 262144
-    },
-    {
-        "id": "nvidia/nemotron-nano-12b-v2-vl:free",
-        "provider": "openrouter",
-        "context_length": 128000,
-        "max_completion_tokens": 128000
     }
 ]

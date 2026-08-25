@@ -1,5 +1,5 @@
 name: Continue Elite Configs
-version: 4.51.0
+version: 4.52.0
 schema: v1
 models:
   - name: 1.1 Fast | groq/compound-mini | Groq | 131k/8k
@@ -34,9 +34,9 @@ models:
     provider: groq
     model: openai/gpt-oss-safeguard-20b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 2.4 Refactor | gpt-oss-120b | SambaNova | 131k/131k
+  - name: 2.4 Refactor | MiniMax-M2.7 | SambaNova | 196k/196k
     provider: sambanova
-    model: gpt-oss-120b
+    model: MiniMax-M2.7
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
   - name: 2.5 Refactor | gemma-4-31B-it | SambaNova | 131k/131k
     provider: sambanova
@@ -54,11 +54,11 @@ models:
     provider: gemini
     model: gemini-flash-latest
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Think | gemini-3.1-pro-preview | Gemini | 1048k/65k
+  - name: 3.4 Think | gemini-3.5-flash | Gemini | 1048k/65k
     provider: gemini
-    model: gemini-3.1-pro-preview
+    model: gemini-3.5-flash
     apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.5 Think | nvidia/nemotron-3.5-lightning:free | OpenRouter | 1000k/65k
-    provider: openrouter
-    model: nvidia/nemotron-3.5-lightning:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.5 Think | gemini-3.7-flash | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-3.7-flash
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
