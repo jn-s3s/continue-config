@@ -150,6 +150,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "gemini-3.5-transcribe",
+        "provider": "gemini",
+        "context_length": 98304,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "gemini-3.6-flash",
         "provider": "gemini",
         "context_length": 1048576,
@@ -222,6 +228,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "gemini-3.5-transcribe-live",
+        "provider": "gemini",
+        "context_length": 131072,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "gemini-2.5-flash-native-audio-latest",
         "provider": "gemini",
         "context_length": 131072,
@@ -244,17 +256,5 @@
         "provider": "gemini",
         "context_length": 131072,
         "max_completion_tokens": 65536
-    },
-    {
-        "id": "gemini-robotics-er-2-streaming-preview",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 65536
-    },
-    {
-        "id": "gemini-3.5-live-translate-preview",
-        "provider": "gemini",
-        "context_length": 16384,
-        "max_completion_tokens": 32768
     }
 ]
