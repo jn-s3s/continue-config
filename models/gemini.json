@@ -24,12 +24,6 @@
         "max_completion_tokens": 16384
     },
     {
-        "id": "gemini-flash-latest-high-res-exp",
-        "provider": "gemini",
-        "context_length": 1048576,
-        "max_completion_tokens": 65536
-    },
-    {
         "id": "gemma-4-26b-a4b-it",
         "provider": "gemini",
         "context_length": 262144,
@@ -193,6 +187,12 @@
     },
     {
         "id": "lyria-3-pro-preview",
+        "provider": "gemini",
+        "context_length": 1048576,
+        "max_completion_tokens": 65536
+    },
+    {
+        "id": "lyria-3.5",
         "provider": "gemini",
         "context_length": 1048576,
         "max_completion_tokens": 65536
