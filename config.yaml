@@ -1,12 +1,11 @@
 name: Continue Elite Configs
-version: 4.60.0
+version: 4.61.0
 schema: v1
 models:
-  # Fast coding chatter
-  - name: 1.1 Fast | DeepSeek-V3.2 | SambaNova | 32k/7k
-    provider: sambanova
-    model: DeepSeek-V3.2
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
+  - name: 1.1 Fast | compound | Groq | 131k/8k
+    provider: groq
+    model: groq/compound
+    apiKey: ${{ secrets.GROQ_API_KEY }}
   - name: 1.2 Fast | compound-mini | Groq | 131k/8k
     provider: groq
     model: groq/compound-mini
@@ -15,55 +14,53 @@ models:
     provider: groq
     model: qwen/qwen3.6-27b
     apiKey: ${{ secrets.GROQ_API_KEY }}
-  - name: 1.4 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
+  - name: 1.4 Fast | qwen3.8-27b | Groq | 131k/16k
+    provider: groq
+    model: qwen/qwen3.8-27b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 1.5 Fast | DeepSeek-V3.1 | SambaNova | 131k/7k
     provider: sambanova
     model: DeepSeek-V3.1
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 1.5 Fast | compound | Groq | 131k/8k
-    provider: groq
-    model: groq/compound
-    apiKey: ${{ secrets.GROQ_API_KEY }}
 
-  # Code review chatter
-  - name: 2.1 Review | MiniMax-M2.7 | SambaNova | 196k/196k
-    provider: sambanova
-    model: MiniMax-M2.7
-    apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.2 Review | gemma-4-31B-it | SambaNova | 131k/131k
+  - name: 2.1 Refactor | gpt-oss-20b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.2 Refactor | gpt-oss-120b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-120b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+  - name: 2.3 Refactor | gemma-4-31B-it | SambaNova | 131k/131k
     provider: sambanova
     model: gemma-4-31B-it
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 2.3 Review | laguna-s-2.1 | OpenRouter | 262k/32k
-    provider: openrouter
-    model: poolside/laguna-s-2.1:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.4 Review | north-mini-code | OpenRouter | 256k/64k
-    provider: openrouter
-    model: cohere/north-mini-code:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-  - name: 2.5 Review | minimax-m2.7 | OpenRouter | 196k/176k
-    provider: openrouter
-    model: minimax/minimax-m2.7:free
-    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
-
-  # Thinking chatter
-  - name: 3.1 Think | MiniMax-M3 | SambaNova | 1048k/1048k
+  - name: 2.4 Refactor | DeepSeek-V3.2 | SambaNova | 32k/7k
     provider: sambanova
-    model: MiniMax-M3
+    model: DeepSeek-V3.2
     apiKey: ${{ secrets.SAMBANOVA_API_KEY }}
-  - name: 3.2 Think | gemini-2.5-pro | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-2.5-pro
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.3 Think | gemini-pro-latest | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-pro-latest
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.4 Think | gemini-flash-latest | Gemini | 1048k/65k
-    provider: gemini
-    model: gemini-flash-latest
-    apiKey: ${{ secrets.GEMINI_API_KEY }}
-  - name: 3.5 Think | inkling | OpenRouter | 1048k/262k
+  - name: 2.5 Refactor | gpt-oss-safeguard-20b | Groq | 131k/65k
+    provider: groq
+    model: openai/gpt-oss-safeguard-20b
+    apiKey: ${{ secrets.GROQ_API_KEY }}
+
+  - name: 3.1 Think | nemotron-3.5-lightning | OpenRouter | 1000k/65k
+    provider: openrouter
+    model: nvidia/nemotron-3.5-lightning:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.2 Think | dots-3-note-preview | OpenRouter | 512k/460k
+    provider: openrouter
+    model: dots-studio/dots-3-note-preview:free
+    apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.3 Think | inkling | OpenRouter | 1048k/262k
     provider: openrouter
     model: thinkingmachines/inkling:free
     apiKey: ${{ secrets.OPENROUTER_API_KEY }}
+  - name: 3.4 Think | gemini-2.5-pro | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-2.5-pro
+    apiKey: ${{ secrets.GEMINI_API_KEY }}
+  - name: 3.5 Think | gemini-pro-latest | Gemini | 1048k/65k
+    provider: gemini
+    model: gemini-pro-latest
+    apiKey: ${{ secrets.GEMINI_API_KEY }}

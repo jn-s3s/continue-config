@@ -72,12 +72,6 @@
         "max_completion_tokens": 65536
     },
     {
-        "id": "minimax/minimax-m3:free",
-        "provider": "openrouter",
-        "context_length": 1048576,
-        "max_completion_tokens": 943718
-    },
-    {
         "id": "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
         "provider": "openrouter",
         "context_length": 256000,
@@ -94,12 +88,6 @@
         "provider": "openrouter",
         "context_length": 262144,
         "max_completion_tokens": 32768
-    },
-    {
-        "id": "minimax/minimax-m2.7:free",
-        "provider": "openrouter",
-        "context_length": 196608,
-        "max_completion_tokens": 176947
     },
     {
         "id": "nvidia/nemotron-3-super-120b-a12b:free",
