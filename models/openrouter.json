@@ -1,5 +1,17 @@
 [
     {
+        "id": "nex-agi/nex-n2.5-mini:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 235929
+    },
+    {
+        "id": "nex-agi/nex-n2.5-pro:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 235929
+    },
+    {
         "id": "inclusionai/ling-3.0-flash-sante:free",
         "provider": "openrouter",
         "context_length": 262144,
