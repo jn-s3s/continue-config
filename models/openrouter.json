@@ -1,5 +1,11 @@
 [
     {
+        "id": "inclusionai/ling-3.0-flash-vl:free",
+        "provider": "openrouter",
+        "context_length": 262144,
+        "max_completion_tokens": 32768
+    },
+    {
         "id": "nex-agi/nex-n2.5-mini:free",
         "provider": "openrouter",
         "context_length": 262144,
