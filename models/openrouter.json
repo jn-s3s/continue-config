@@ -54,12 +54,6 @@
         "max_completion_tokens": 65536
     },
     {
-        "id": "deepseek/deepseek-v4-flash-0731:free",
-        "provider": "openrouter",
-        "context_length": 1048576,
-        "max_completion_tokens": 393216
-    },
-    {
         "id": "thinkingmachines/inkling-small:free",
         "provider": "openrouter",
         "context_length": 1048576,
