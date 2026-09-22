@@ -228,6 +228,12 @@
         "max_completion_tokens": 65536
     },
     {
+        "id": "antigravity-preview-latest",
+        "provider": "gemini",
+        "context_length": 1048576,
+        "max_completion_tokens": 65536
+    },
+    {
         "id": "deep-research-max-preview-04-2026",
         "provider": "gemini",
         "context_length": 131072,
@@ -250,11 +256,5 @@
         "provider": "gemini",
         "context_length": 131072,
         "max_completion_tokens": 65536
-    },
-    {
-        "id": "gemini-2.5-flash-native-audio-latest",
-        "provider": "gemini",
-        "context_length": 131072,
-        "max_completion_tokens": 8192
     }
 ]
