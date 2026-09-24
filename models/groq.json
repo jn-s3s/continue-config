@@ -1,6 +1,6 @@
 [
     {
-        "id": "openai/gpt-oss-120b",
+        "id": "openai/gpt-oss-safeguard-20b",
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 65536
@@ -8,17 +8,17 @@
     {
         "id": "qwen/qwen3.8-27b",
         "provider": "groq",
-        "context_length": 131042,
+        "context_length": 131072,
         "max_completion_tokens": 16384
     },
     {
-        "id": "openai/gpt-oss-20b",
+        "id": "openai/gpt-oss-120b",
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 65536
     },
     {
-        "id": "openai/gpt-oss-safeguard-20b",
+        "id": "openai/gpt-oss-20b",
         "provider": "groq",
         "context_length": 131072,
         "max_completion_tokens": 65536
